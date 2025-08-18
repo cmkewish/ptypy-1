@@ -711,8 +711,11 @@ class Hdf5Loader(PtyScan):
                 scale =  self.normalisation[index]
             else:
                 scale = np.squeeze(self.normalisation[indexed_frame_slices])
-            if np.abs(scale - self.normalisation_mean) < (self.p.normalisation.sigma * self.normalisation_std):
-                intensity[:] = intensity / scale * self.normalisation_mean
+            intensity[:] = intensity / scale * self.normalisation_mean
+            # if np.abs(scale - self.normalisation_mean) < (self.p.normalisation.sigma * self.normalisation_std):
+            #     print("before: ", intensity.mean())
+            #     intensity[:] = intensity / scale * self.normalisation_mean
+            #     print("after: ", intensity.mean())
 
         if self.mask is not None:
             if self.mask_laid_out_like_data:
