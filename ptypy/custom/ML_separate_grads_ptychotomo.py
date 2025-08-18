@@ -871,7 +871,7 @@ class GaussianModel(BaseModel):
 
                 # Compute fluence maps for probe and volume
                 self.pr_fln[pod.pr_view] += u.abs2(expobj)
-                volume_fluence_map = u.abs2(pod.probe * expobj)
+                volume_fluence_map = u.abs2(pod.probe * expobj) / self.tot_power
                 self.projected_rho_fln[pod.ex_view] = volume_fluence_map
 
             diff_view.error = LLL
